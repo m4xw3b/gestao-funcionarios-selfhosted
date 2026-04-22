@@ -42,4 +42,4 @@ Para facilitar a compreensão e a manutenção do sistema, o repositório está 
 ---
 
 ### 👨‍💻 Desenvolvido por
-**João Fernandes** Projeto desenvolvido para **Auchan Portugal** 📧 Contacto: joao.fernandes@auchan.pt
+**João Fernandes** 
