@@ -1,0 +1,11 @@
+# Pastas do Python e Ambiente Virtual
+venv/
+__pycache__/
+*.pyc
+
+# Segurança: Ficheiros de Variáveis de Ambiente
+.env
+
+# Uploads Locais (não enviar fotos reais para a internet)
+app/static/img/*
+!app/static/img/.keep

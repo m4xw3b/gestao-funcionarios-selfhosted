@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Departamento: {{ departamento[1] }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <div class="janela-app">
+        <div class="cabecalho">
+            <a href="/" style="text-decoration: none; margin-right: 15px; color: #0067c0;">⬅ Voltar</a>
+            🏢 Departamento: {{ departamento[1] }}
+        </div>
+        
+        <div class="conteudo">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h2>Lista de Funcionários</h2>
+		<a href="/departamento/{{ departamento[0] }}/adicionar" style="padding: 8px 16px; background-color: #0067c0; color: white; border: none; border-radius: 4px; cursor: pointer; text-decoration: none;"> + Adicionar Funcionário
+		</a>	
+            </div>
+
+            <div style="background: rgba(255,255,255,0.7); border-radius: 8px; padding: 15px; margin-top: 20px;">
+                {% if funcionarios %}
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                    {% for func in funcionarios %}
+                        <li style="padding: 12px; border-bottom: 1px solid rgba(0,0,0,0.05); display: flex; align-items: center; gap: 15px; transition: background 0.2s; border-radius: 6px;">
+                            
+                            {% if func[5] %}
+                                <img src="{{ url_for('static', filename='img/' + func[5]) }}" alt="Foto de {{ func[1] }}" style="width: 48px; height: 48px; border-radius: 50%; object-fit: cover; border: 2px solid white; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+                            {% else %}
+                                <div style="width: 48px; height: 48px; border-radius: 50%; background-color: #0067c0; color: white; display: flex; justify-content: center; align-items: center; font-size: 20px; font-weight: bold; border: 2px solid white; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+                                    {{ func[1][0] }}
+                                </div>
+                            {% endif %}
+                            
+                            <div style="display: flex; flex-direction: column;">
+                                <strong style="font-size: 16px; color: #333;">{{ func[1] }}</strong>
+                                <span style="font-size: 13px; color: #666;">📧 {{ func[4] }}</span>
+                            </div>
+				<div style="margin-left: auto; display: flex; gap: 10px;">
+                                <a href="/departamento/{{ departamento[0] }}/editar/{{ func[0] }}" style="padding: 6px 12px; background-color: #f3f2f1; color: #333; text-decoration: none; border-radius: 4px; font-size: 13px; border: 1px solid #ccc; transition: all 0.2s;">
+                                    ✏️ Editar
+                                </a>
+                                <a href="/departamento/{{ departamento[0] }}/apagar/{{ func[0] }}" style="padding: 6px 12px; background-color: #ffe4e4; color: #d13438; text-decoration: none; border-radius: 4px; font-size: 13px; border: 1px solid #fac2c2; transition: all 0.2s;" onclick="return confirm('Tem a certeza que deseja apagar este registo?');">
+                                    🗑️ Apagar
+                                </a>
+                            </div>
+                        </li>
+                    {% endfor %}
+                    </ul>
+                {% else %}
+                    <p style="color: #666; font-style: italic;">Ainda não existem funcionários registados neste departamento.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

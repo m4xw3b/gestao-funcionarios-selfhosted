@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <title>Adicionar Funcionário</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        /* Estilo simples para as caixas de texto do Windows 11 */
+        .form-input {
+            width: 100%; padding: 10px; margin: 8px 0 20px 0;
+            border: 1px solid #ccc; border-radius: 5px;
+            background: rgba(255,255,255,0.8);
+            box-sizing: border-box; font-family: inherit;
+        }
+    </style>
+</head>
+<body>
+    <div class="janela-app">
+        <div class="cabecalho">
+            <a href="/departamento/{{ departamento[0] }}" style="text-decoration: none; margin-right: 15px; color: #0067c0;">⬅ Cancelar e Voltar</a>
+            Adicionar a: {{ departamento[1] }}
+        </div>
+        
+        <div class="conteudo">
+            <h2>Novo Registo de Funcionário</h2>
+            
+            <form method="POST" enctype="multipart/form-data" style="max-width: 600px;">
+                <label>Nome Completo:</label>
+                <input type="text" name="nome" class="form-input" required>
+                
+                <label>Email Profissional:</label>
+                <input type="email" name="email" class="form-input" required>
+                
+                <label>Telemóvel:</label>
+                <input type="text" name="telemovel" class="form-input">
+                
+                <label>Morada:</label>
+                <input type="text" name="morada" class="form-input">
+                
+                <label>Nível de Acesso (Permissão):</label>
+                <select name="permissao_id" class="form-input" required>
+                    {% for perm in permissoes %}
+                        <option value="{{ perm[0] }}">{{ perm[1] }}</option>
+                    {% endfor %}
+                </select>
+                
+                <label>Fotografia de Perfil:</label>
+                <input type="file" name="foto" accept="image/*" class="form-input">
+                
+                <button type="submit" style="padding: 10px 20px; background-color: #0067c0; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; margin-top: 10px;">
+                    Guardar Funcionário
+                </button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

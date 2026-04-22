@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Funcionário</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .form-input { width: 100%; padding: 10px; margin: 8px 0 20px 0; border: 1px solid #ccc; border-radius: 5px; background: rgba(255,255,255,0.8); box-sizing: border-box; font-family: inherit; }
+    </style>
+</head>
+<body>
+    <div class="janela-app">
+        <div class="cabecalho">
+            <a href="/departamento/{{ departamento[0] }}" style="text-decoration: none; margin-right: 15px; color: #0067c0;">⬅ Cancelar</a>
+            Editar Funcionário: {{ funcionario[1] }}
+        </div>
+        
+        <div class="conteudo">
+            <form method="POST" style="max-width: 600px;">
+                <label>Nome Completo:</label>
+                <input type="text" name="nome" class="form-input" value="{{ funcionario[1] }}" required>
+                
+                <label>Email Profissional:</label>
+                <input type="email" name="email" class="form-input" value="{{ funcionario[4] }}" required>
+                
+                <label>Telemóvel:</label>
+                <input type="text" name="telemovel" class="form-input" value="{{ funcionario[3] if funcionario[3] != None else '' }}">
+                
+                <label>Morada:</label>
+                <input type="text" name="morada" class="form-input" value="{{ funcionario[2] if funcionario[2] != None else '' }}">
+                
+                <label>Nível de Acesso (Permissão):</label>
+                <select name="permissao_id" class="form-input" required>
+                    {% for perm in permissoes %}
+                        <option value="{{ perm[0] }}" {% if perm[0] == funcionario[8] %}selected{% endif %}>{{ perm[1] }}</option>
+                    {% endfor %}
+                </select>
+                
+                <button type="submit" style="padding: 10px 20px; background-color: #0067c0; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px;">
+                    Guardar Alterações
+                </button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

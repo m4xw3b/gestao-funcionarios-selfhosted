@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Funcionários</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <div class="janela-app">
+        <div class="cabecalho">
+            🏢 Sistema de Gestão de Funcionários
+        </div>
+        
+        <div class="conteudo">
+            <h2>Bem-vindo. O servidor Ubuntu está online.</h2>
+            <p>Selecione um departamento para gerir os respetivos funcionários.</p>
+            <h3>Departamentos Disponíveis</h3>
+            
+	    <div class="grelha-cartoes">
+		{% for depto in departamentos %}
+                <a href="/departamento/{{ depto[0] }}" class="cartao" style="text-decoration: none; color: inherit;">
+                    <strong>{{ depto[1] }}</strong>
+                </a>
+                {% endfor %}
+            </div>
+
+            <h3 style="margin-top: 30px;">Níveis de Permissão Ativos</h3>
+            <ul>
+                {% for perm in permissoes %}
+                <li>{{ perm[1] }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+</body>
+</html>
