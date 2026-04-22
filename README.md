@@ -2,7 +2,7 @@
 
 > **Resumo:** Sistema de gestão de funcionários self-hosted com infraestrutura de rede isolada, base de dados PostgreSQL e interface inspirada no Windows 11 Fluent Design.
 
-**Tags:** #ITInfrastructure #Python #Flask #PostgreSQL #LinuxAdmin #SelfHosted #Networking #AuchanPortugal
+**Tags:** #ITInfrastructure #Python #Flask #PostgreSQL #LinuxAdmin #SelfHosted #Networking 
 
 ---
 
