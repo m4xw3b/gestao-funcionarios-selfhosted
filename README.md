@@ -1,46 +1,39 @@
-# 🏢 Sistema de Gestão de Funcionários (Self-Hosted)
+🏢 Enterprise HR Management System (Self-Hosted)
+Este projeto consiste numa solução completa de gestão de recursos humanos, integrando infraestrutura de redes, base de dados relacional e uma interface moderna. Foi desenvolvido para operar num ambiente de servidor isolado, garantindo a máxima segurança e autonomia na gestão de dados críticos.
 
-> **Resumo:** Plataforma full-stack em Python/Flask para gestão de recursos humanos, alojada em servidor Ubuntu com rede isolada, DHCP próprio e base de dados PostgreSQL.
+A arquitetura de rede foi desenhada para simular um cenário empresarial real, onde o servidor Ubuntu atua como gateway, gerindo o tráfego entre a rede externa e um segmento de LAN privado. Através da implementação de um servidor DHCP nativo, garantimos a conectividade automática para as estações de trabalho clientes.
 
-**Tags:** `#Python` `#Flask` `#UbuntuServer` `#PostgreSQL` `#SelfHosted` `#Networking` `#FluentDesign`
+No coração do sistema encontra-se uma base de dados PostgreSQL, estruturada com integridade referencial para gerir funcionários, departamentos e níveis de permissão. Esta escolha permite uma escalabilidade robusta e consultas complexas, fundamentais para a geração de relatórios e manutenção da consistência dos dados.
 
----
+A aplicação foi construída em Python utilizando a framework Flask, focando-se em funções básicas e cálculos simples para garantir uma manutenção facilitada. A lógica de negócio está isolada das camadas de apresentação, seguindo os princípios de desenvolvimento modular e boas práticas de engenharia de software.
 
-## 📖 Sobre o Projeto
-Este projeto simula um ambiente empresarial real e isolado. Foi concebido para correr num servidor Linux dedicado, atuando como o seu próprio router e gestor de rede, servindo os clientes através de uma API Flask com uma interface inspirada no **Windows 11 Fluent Design**.
+A interface de utilizador adota o Fluent Design, inspirado no Windows 11, proporcionando uma experiência de utilização fluida e visualmente apelativa através de efeitos de transparência e desfoque. O objetivo foi criar um sistema funcional que, ao mesmo tempo, fosse intuitivo e visualmente integrado no ecossistema moderno.
 
-## 🛠️ Stack Tecnológica & Arquitetura
+A persistência do serviço é assegurada através da criação de daemons de sistema no Ubuntu, permitindo que a aplicação se recupere automaticamente de falhas. Todo o processo de deployment é facilitado por scripts de automação, permitindo replicar esta infraestrutura em qualquer servidor em poucos minutos.
+🖼️ Demonstração do Projeto
+📝 Resumo do Projeto
+Sistema de gestão de funcionários self-hosted com infraestrutura de rede isolada, base de dados PostgreSQL e interface inspirada no Windows 11 Fluent Design.
 
-### 1. Infraestrutura de Rede (O Laboratório)
-O ambiente utiliza duas Máquinas Virtuais para garantir isolamento e segurança:
-* **Ubuntu Server (Router/Gateway):** Configurado com duas placas de rede. Uma em modo Bridge (para acesso à Internet) e outra num LAN Segment interno.
-* **Cliente Windows 10:** Configurado no LAN Segment, sem acesso direto à internet física.
-* **Automação DHCP:** O servidor Ubuntu utiliza o `isc-dhcp-server` para atribuir IPs dinamicamente à rede cliente. As rotas e IPs estáticos do servidor são geridos via `Netplan`.
+Tags: #ITInfrastructure #Python #Flask #PostgreSQL #LinuxAdmin #SelfHosted #Networking
 
-### 2. Backend & Persistência de Dados
-* **Base de Dados:** PostgreSQL (Relacional). Estruturada com chaves estrangeiras ligando `Departamentos`, `Permissoes` e `Funcionarios`.
-* **Lógica de Servidor:** Python com o micro-framework Flask.
-* **Segurança:** Utilização de ambientes virtuais (`venv`) e isolamento de credenciais através de variáveis de ambiente (`.env`).
+📂 Estrutura de Ficheiros
+Para facilitar a compreensão e manutenção do sistema, o repositório está organizado da seguinte forma:
 
-### 3. Frontend (Interface de Utilizador)
-* HTML5 puro e CSS3 avançado, injetados via `Jinja2`.
-* Interface com Efeito *Mica* / *Glassmorphism* (`backdrop-filter: blur(20px)`).
-* Sistema de formulários dinâmicos com suporte a upload de ficheiros (Avatares).
+app/: Contém o núcleo da aplicação, incluindo os modelos de dados (models.py), ficheiros estáticos (CSS/Imagens) e os templates HTML da interface.
 
----
+scripts/: Suite de automação em Bash para configuração de rede (setup_network.sh), instalação de dependências (setup_app.sh) e criação do serviço de sistema (setup_service.sh).
 
-## ✨ Funcionalidades Principais
-- [x] **Operações CRUD Completas:** Ler, Adicionar, Editar e Apagar registos de funcionários.
-- [x] **Gestão de Ficheiros:** Upload seguro e visualização dinâmica de imagens de perfil.
-- [x] **Controlo de Acessos:** Níveis de Permissão estruturados (Admin, Gestor, Funcionário).
-- [x] **Script de Setup Automático:** Script Bash (`setup_rede.sh`) incluído para automatizar futuras configurações de Netplan e DHCP em novos servidores.
+sql/: Inclui o ficheiro schema.sql, responsável por criar toda a estrutura de tabelas e dados iniciais na base de dados PostgreSQL.
 
----
+.env.example: Ficheiro de exemplo para configuração de variáveis de ambiente, servindo de guia para o utilizador configurar as suas próprias credenciais.
 
-## ⚙️ Guia Rápido de Instalação (Servidor Novo)
+.gitignore: Define as regras de exclusão para o Git, impedindo que ficheiros sensíveis (como a password do DB no .env) ou pastas temporárias sejam partilhados.
 
-Caso necessite de replicar a infraestrutura num servidor Ubuntu limpo, execute o script de automação de rede fornecido na raiz do projeto:
+run.py: O ponto de entrada da aplicação Flask, responsável por inicializar o servidor web e as rotas principais.
 
-```bash
-chmod +x setup_rede.sh
-sudo ./setup_rede.sh
+README.md: Documentação técnica completa e guia de instalação do projeto.
+
+projeto_gestao_funcionarios*.jpg: Capturas de ecrã para demonstração visual da interface e funcionalidades do sistema.
+
+👨‍💻 Desenvolvido por
+João Fernandes 
